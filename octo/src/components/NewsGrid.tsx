@@ -48,12 +48,13 @@ const NewsGrid = () => {
           publishedAt: item.publishedAt,
         }));
 
+        // Prepare ad slots at specific positions
         const newsWithAds = [...formattedNews];
         if (newsWithAds.length > 4) {
           newsWithAds.splice(4, 0, {
             _id: 'ad-1',
-            title: 'Sponsored: Try our new productivity tool',
-            source: 'Advertiser',
+            title: '',
+            source: '',
             url: '#',
             isAd: true,
             publishedAt: new Date().toISOString(),
@@ -62,8 +63,8 @@ const NewsGrid = () => {
         if (newsWithAds.length > 8) {
           newsWithAds.splice(8, 0, {
             _id: 'ad-2',
-            title: 'Sponsored: Learn coding in 30 days',
-            source: 'Advertiser',
+            title: '',
+            source: '',
             url: '#',
             isAd: true,
             publishedAt: new Date().toISOString(),
@@ -100,13 +101,20 @@ const NewsGrid = () => {
     }
   };
 
+  // AdSense ad unit configuration
+  const adUnits = [
+    { id: 'ad-slot-1', slot: '1234567890', position: 4 },
+    { id: 'ad-slot-2', slot: '0987654321', position: 8 }
+  ];
+
   return (
     <div className="bg-white/10 backdrop-blur-md w-6/7 mx-auto rounded-lg p-4">
-      {/* Ezoic Base Script */}
+      {/* Google AdSense Script */}
       <Script
-        id="ezoic-base"
+        id="adsbygoogle-init"
         strategy="afterInteractive"
-        src="https://g.ezoic.net/ezoic/ezoic.js"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${9978045080089847}`}
+        crossOrigin="anonymous"
       />
 
       <h2 className="text-xl font-bold text-white mb-4">Latest News</h2>
@@ -121,27 +129,38 @@ const NewsGrid = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {news.map((item, index) =>
-            item.isAd ? (
-              <div
-                key={item._id}
-                className="rounded-lg bg-white/5 border-2 border-yellow-400 p-4 text-center"
-              >
-                <div id={`ezoic-pub-ad-placeholder-${101 + index}`}></div>
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      if (window.ezstandalone && typeof ezstandalone.showAds === 'function') {
-                        ezstandalone.cmd = ezstandalone.cmd || [];
-                        ezstandalone.cmd.push(function() {
-                          ezstandalone.showAds(${101 + index});
-                        });
-                      }
-                    `,
-                  }}
-                />
-              </div>
-            ) : (
+          {news.map((item, index) => {
+            // Check if current position matches an ad slot position
+            const adUnit = adUnits.find(ad => ad.position === index);
+            
+            if (item.isAd || adUnit) {
+              return (
+                <div
+                  key={adUnit ? adUnit.id : `ad-${index}`}
+                  className="rounded-lg bg-white/5 border-2 border-yellow-400 p-4 min-h-[300px] flex items-center justify-center"
+                >
+                  <ins
+                    className="adsbygoogle block"
+                    style={{ display: 'block' }}
+                    data-ad-client={`ca-pub-${9978045080089847}`}
+                    data-ad-slot={adUnit?.slot}
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                  ></ins>
+                  <Script
+                    id={`adsbygoogle-${index}`}
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                      __html: `
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                      `,
+                    }}
+                  />
+                </div>
+              );
+            }
+
+            return (
               <div
                 key={item._id}
                 className="rounded-lg overflow-hidden transition-transform hover:scale-[1.02] bg-white/5 hover:bg-white/10"
@@ -166,7 +185,7 @@ const NewsGrid = () => {
                   <div className="p-3">
                     <h3 className="font-semibold text-white line-clamp-2">{item.title}</h3>
                     <div className="flex justify-between items-center mt-2">
-                      <p className={`text-xs ${item.isAd ? 'text-yellow-400' : 'text-white/60'}`}>
+                      <p className="text-xs text-white/60">
                         {item.source}
                       </p>
                       {!item.urlToImage && (
@@ -178,16 +197,11 @@ const NewsGrid = () => {
                     {item.description && (
                       <p className="text-sm text-white/70 mt-2 line-clamp-2">{item.description}</p>
                     )}
-                    {item.isAd && (
-                      <span className="inline-block mt-2 text-xs text-yellow-400 bg-yellow-400/10 px-2 py-1 rounded">
-                        Sponsored
-                      </span>
-                    )}
                   </div>
                 </a>
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       )}
     </div>
