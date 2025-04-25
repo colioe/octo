@@ -49,29 +49,9 @@ const NewsGrid = () => {
         }));
 
         // Prepare ad slots at specific positions
-        const newsWithAds = [...formattedNews];
-        if (newsWithAds.length > 4) {
-          newsWithAds.splice(4, 0, {
-            _id: 'ad-1',
-            title: '',
-            source: '',
-            url: '#',
-            isAd: true,
-            publishedAt: new Date().toISOString(),
-          });
-        }
-        if (newsWithAds.length > 8) {
-          newsWithAds.splice(8, 0, {
-            _id: 'ad-2',
-            title: '',
-            source: '',
-            url: '#',
-            isAd: true,
-            publishedAt: new Date().toISOString(),
-          });
-        }
+     
 
-        setNews(newsWithAds);
+        setNews(formattedNews);
       } catch (error) {
         console.error('Error fetching news:', error);
         setError(error instanceof Error ? error.message : 'An unknown error occurred');
