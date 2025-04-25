@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+      <meta name="coinzilla" content="1b45a0d966f2fe52266780a0a6030ced" />
       <Script 
         id="ezoic-script"
         strategy="afterInteractive"
