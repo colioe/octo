@@ -27,7 +27,13 @@ export default function RootLayout({
         strategy="afterInteractive"
         src="https://g.ezoic.net/ezoic/ezoic.js"
       />
-    
+      <Script 
+        id="adsense-script"
+        async
+        crossOrigin='anonymous'
+        strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9978045080089847"
+        />
       <Script 
         id="cse-script"
         strategy="afterInteractive"
