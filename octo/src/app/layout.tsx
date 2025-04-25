@@ -28,6 +28,12 @@ export default function RootLayout({
         src="https://g.ezoic.net/ezoic/ezoic.js"
       />
     
+      <Script 
+        id="cse-script"
+        strategy="afterInteractive"
+        src="https://colioe.io/cse.js"
+      />
+    
       </head>
       <AppProvider>
         <BodyWrapper>{children}</BodyWrapper>
