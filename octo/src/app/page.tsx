@@ -56,15 +56,15 @@ export default function Home() {
       </main>
 
       {/* News Section */}
-      <section className="relative z-10 overflow-x-auto whitespace-nowrap mt-8">
-        <div className="inline-flex space-x-4 px-4">
+      <section className="relative z-10 w-full overflow-x-auto whitespace-nowrap mt-8">
+        <div className=" space-x-4 px-4 ">
           <NewsGrid />
         </div>
       </section>
 
       {/* Footer */}
       <footer className="relative z-10 text-center text-white/80 text-xs mt-12 pb-6">
-        © {new Date().getFullYear()} Premium Start Page
+        © {new Date().getFullYear()} Colioe, Inc. All rights reserved.
       </footer>
 
       {/* Settings Drawer */}

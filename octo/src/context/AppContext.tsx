@@ -17,9 +17,9 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [searchEngine, setSearchEngine] = useState('google');
-  const [background, setBackground] = useState('/default-bg.jpg');
+  const [background, setBackground] = useState('');
   const [notes, setNotes] = useState('');
-  const [watchlist, setWatchlist] = useState<string[]>(['AAPL', 'MSFT', 'BTC']);
+  const [watchlist, setWatchlist] = useState<string[]>([]);
 
   return (
     <AppContext.Provider value={{

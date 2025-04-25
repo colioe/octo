@@ -78,25 +78,7 @@ const SearchBar = () => {
         </div>
 
         {/* Search Engine Selector */}
-        <div className="absolute right-2 top-2 bottom-2 flex overflow-hidden rounded-lg">
-          {Object.entries(searchEngines).map(([key, engine]) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setSearchEngine(key)}
-              className={`px-3 flex items-center justify-center transition-all ${
-                searchEngine === key 
-                  ? `${engine.color} text-white` 
-                  : 'bg-white/5 hover:bg-white/10 text-white/60'
-              }`}
-              title={`Search with ${key.charAt(0).toUpperCase() + key.slice(1)}`}
-            >
-              <span className="font-medium text-sm">
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </span>
-            </button>
-          ))}
-        </div>
+      
       </form>
 
       {/* Suggestions Dropdown (optional) */}
