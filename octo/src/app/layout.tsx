@@ -31,6 +31,11 @@ export default function RootLayout({
         strategy="afterInteractive"
         src="https://octo.colioe.io/sw.js"
       />
+      <Script 
+        id="monetag-script"
+        strategy="afterInteractive"
+        src="https://octo.colioe.io/9261203.min.js"
+      />
       </head>
       <AppProvider>
         <BodyWrapper>{children}</BodyWrapper>
