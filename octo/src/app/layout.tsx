@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { AppProvider } from '../context/AppContext'; // 👈 adjust path if needed
 import BodyWrapper from '../components/BodyWrapper';  // 👇 we'll make this
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <Script 
+        id="ezoic-script"
+        strategy="afterInteractive"
+        src="https://g.ezoic.net/ezoic/ezoic.js"
+      />
+      </head>
       <AppProvider>
         <BodyWrapper>{children}</BodyWrapper>
       </AppProvider>
