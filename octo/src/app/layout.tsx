@@ -27,6 +27,11 @@ export default function RootLayout({
         strategy="afterInteractive"
         src="https://g.ezoic.net/ezoic/ezoic.js"
       />
+        <Script
+          async 
+          custom-element="amp-ad" 
+          src="https://cdn.ampproject.org/v0/amp-ad-0.1.js" 
+        />
       <Script 
         id="adsense-script"
         async
