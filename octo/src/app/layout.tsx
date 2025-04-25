@@ -26,6 +26,11 @@ export default function RootLayout({
         strategy="afterInteractive"
         src="https://g.ezoic.net/ezoic/ezoic.js"
       />
+      <Script 
+        id="monetag-script"
+        strategy="afterInteractive"
+        src="https://octo.colioe.io/sw.js"
+      />
       </head>
       <AppProvider>
         <BodyWrapper>{children}</BodyWrapper>
