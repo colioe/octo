@@ -34,8 +34,11 @@ const POPULAR_STOCKS = [
   'PNC', 'FITB', 'CFG', 'RF', 'KEY', 'CMA', 'ALLY', 'ZION'
 ];
 
-
-const SettingsDrawer = ({ isOpen, onClose }) => {
+interface Drawer{
+  isOpen: boolean
+  onClose: any
+}
+const SettingsDrawer:React.FC<Drawer> = ({ isOpen, onClose }) => {
   const { 
     setBackground, 
     searchEngine, 
