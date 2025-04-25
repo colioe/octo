@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Octo - Your Personalized Search Solution',
-  description: 'A customizable search engine solution for developers',
+  description: 'A customizable search engine solution',
 };
 
 export default function RootLayout({
