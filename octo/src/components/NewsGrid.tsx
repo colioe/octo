@@ -48,9 +48,6 @@ const NewsGrid = () => {
           publishedAt: item.publishedAt,
         }));
 
-        // Prepare ad slots at specific positions
-     
-
         setNews(formattedNews);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -80,15 +77,16 @@ const NewsGrid = () => {
       });
     }
   };
-  
+
   return (
     <div className="bg-white/10 backdrop-blur-md w-6/7 mx-auto rounded-lg p-4">
-      {/* Google AdSense Script */}
+      {/* PropellerAds Script */}
       <Script
-        id="adsbygoogle-init"
+        id="propellerads-script"
         strategy="afterInteractive"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${9978045080089847}`}
-        crossOrigin="anonymous"
+        src="https://propu.sh/pfe/current/tag.min.js?z=9261203"
+        async
+        data-cfasync="false"
       />
 
       <h2 className="text-xl font-bold text-white mb-4">Latest News</h2>
@@ -103,49 +101,43 @@ const NewsGrid = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {news.map((item, index) => {
-            return (
-              <div
-                key={item._id}
-                className="rounded-lg overflow-hidden transition-transform hover:scale-[1.02] bg-white/5 hover:bg-white/10"
-              >
-                <a href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full">
-                  {item.urlToImage && (
-                    <div className="relative h-32 w-full overflow-hidden">
-                      <img
-                        src={item.urlToImage}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            'https://via.placeholder.com/300x150?text=News+Image';
-                        }}
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-                        <span className="text-xs text-white">{formatDate(item.publishedAt)}</span>
-                      </div>
+          {news.map((item) => (
+            <div
+              key={item._id}
+              className="rounded-lg overflow-hidden transition-transform hover:scale-[1.02] bg-white/5 hover:bg-white/10"
+            >
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                {item.urlToImage && (
+                  <div className="relative h-32 w-full overflow-hidden">
+                    <img
+                      src={item.urlToImage}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          'https://via.placeholder.com/300x150?text=News+Image';
+                      }}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                      <span className="text-xs text-white">{formatDate(item.publishedAt)}</span>
                     </div>
-                  )}
-                  <div className="p-3">
-                    <h3 className="font-semibold text-white line-clamp-2">{item.title}</h3>
-                    <div className="flex justify-between items-center mt-2">
-                      <p className="text-xs text-white/60">
-                        {item.source}
-                      </p>
-                      {!item.urlToImage && (
-                        <span className="text-xs text-white/50">
-                          {formatDate(item.publishedAt)}
-                        </span>
-                      )}
-                    </div>
-                    {item.description && (
-                      <p className="text-sm text-white/70 mt-2 line-clamp-2">{item.description}</p>
+                  </div>
+                )}
+                <div className="p-3">
+                  <h3 className="font-semibold text-white line-clamp-2">{item.title}</h3>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-xs text-white/60">{item.source}</p>
+                    {!item.urlToImage && (
+                      <span className="text-xs text-white/50">{formatDate(item.publishedAt)}</span>
                     )}
                   </div>
-                </a>
-              </div>
-            );
-          })}
+                  {item.description && (
+                    <p className="text-sm text-white/70 mt-2 line-clamp-2">{item.description}</p>
+                  )}
+                </div>
+              </a>
+            </div>
+          ))}
         </div>
       )}
     </div>
