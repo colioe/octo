@@ -137,10 +137,10 @@ const NewsGrid = () => {
               return (
                 <div
                   key={adUnit ? adUnit.id : `ad-${index}`}
-                  className="rounded-lg bg-white/5 border-2 border-yellow-400 p-4 min-h-[300px] flex items-center justify-center"
+                  className="rounded-lg bg-white/5 border-2    p-4 min-h-[300px] flex items-center justify-center"
                 >
                   <ins
-                    className="adsbygoogle block"
+                    className="adsbygoogle block main"
                     style={{ display: 'block' }}
                     data-ad-client={`ca-pub-${9978045080089847}`}
                     data-ad-slot={adUnit?.slot}
