@@ -100,13 +100,7 @@ const NewsGrid = () => {
       });
     }
   };
-
-  // AdSense ad unit configuration
-  const adUnits = [
-    { id: 'ad-slot-1', slot: '1234567890', position: 4 },
-    { id: 'ad-slot-2', slot: '0987654321', position: 8 }
-  ];
-
+  
   return (
     <div className="bg-white/10 backdrop-blur-md w-6/7 mx-auto rounded-lg p-4">
       {/* Google AdSense Script */}
@@ -130,36 +124,6 @@ const NewsGrid = () => {
       ) : (
         <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {news.map((item, index) => {
-            // Check if current position matches an ad slot position
-            const adUnit = adUnits.find(ad => ad.position === index);
-            
-            if (item.isAd || adUnit) {
-              return (
-                <div
-                  key={adUnit ? adUnit.id : `ad-${index}`}
-                  className="rounded-lg bg-white/5 border-2    p-4 min-h-[300px] flex items-center justify-center"
-                >
-                  <ins
-                    className="adsbygoogle block main"
-                    style={{ display: 'block' }}
-                    data-ad-client={`ca-pub-${9978045080089847}`}
-                    data-ad-slot={adUnit?.slot}
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"
-                  ></ins>
-                  <Script
-                    id={`adsbygoogle-${index}`}
-                    strategy="afterInteractive"
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                      `,
-                    }}
-                  />
-                </div>
-              );
-            }
-
             return (
               <div
                 key={item._id}
