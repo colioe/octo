@@ -96,7 +96,24 @@ const FinancialWatchlist = () => {
         <Loader2 className="animate-spin w-4 h-4 text-gray-300" />
       ) : error ? (
         <span className="text-red-400 text-xs">{error}</span>
-      ) : (
+      ) : 
+      window.innerHeight > window.innerWidth ? (
+        data.splice(0, 2).map(item => (
+          <div key={item.symbol} className="flex items-center gap-1 group relative">
+            <span className="font-semibold text-xs">{item.symbol}</span>
+            <span className=" text-xs">${item.price.toFixed(2)}</span>
+            <span className={`text-xs ${item.change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {item.change >= 0 ? '+' : ''}{item.change.toFixed(2)} ({item.changePercent.toFixed(2)}%)
+            </span>
+            {item.description && (
+              <div className="absolute bottom-full left-0 mb-1 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-10 min-w-max">
+                {item.description}
+              </div>
+            )}
+          </div>
+        ))
+      )
+      : (
         data.map(item => (
           <div key={item.symbol} className="flex items-center gap-1 group relative">
             <span className="font-semibold">{item.symbol}</span>
@@ -111,7 +128,8 @@ const FinancialWatchlist = () => {
             )}
           </div>
         ))
-      )}
+      )
+      }
     </div>
   )
 }

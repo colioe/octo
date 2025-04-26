@@ -41,7 +41,7 @@ const SearchBar = () => {
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSearch} className="relative">
         {/* Search Input */}
-        <div className="relative group">
+        <div className="relative group mx-auto md:w-auto w-[95vw]">
           <input
             ref={inputRef}
             type="text"
@@ -49,7 +49,7 @@ const SearchBar = () => {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setTimeout(() => setFocused(false), 200)}
-            className={`w-full h-14 pl-14 pr-24 rounded-xl bg-white/5 backdrop-blur-lg border-2 transition-all duration-300 ${
+            className={` mx-auto w-full h-14 pl-14 pr-24 rounded-xl bg-white/5 backdrop-blur-lg border-2 transition-all duration-300 ${
               focused 
                 ? 'border-blue-400/80 shadow-lg shadow-blue-500/10' 
                 : 'border-white/10 hover:border-white/20'

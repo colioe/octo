@@ -100,7 +100,7 @@ const NewsGrid = () => {
   };
   
   return (
-    <div className="bg-white/10 backdrop-blur-md w-6/7 mx-auto rounded-lg p-4">
+    <div className="bg-white/10 backdrop-blur-md w-full md:w-6/7 mx-auto rounded-lg md:p-4 p-2">
       {/* Global AdSense Script */}
       <Script
         id="adsbygoogle-script"
